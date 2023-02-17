@@ -1,6 +1,6 @@
 //current data array
 let data = [0,0,0];
-//raumdueeter
+//raumdueeters
 //creating an identifier for table 1 body
 const t1=document.querySelector('#table1');
 let pid=[];
@@ -8,6 +8,7 @@ let completed=[];
 let entries=0; //process counter
 var avgwt=0;
 var avgta=0;
+let extraarrayPID=[];
 //------------------------------------------------------------------
 function addrow(){
     //loading the current data(user input) into current data array
@@ -29,7 +30,7 @@ function addrow(){
         alert("Burst time cannot be negative");
         return;
     }
-    if((pid.includes(data[0]))){
+    if((extraarrayPID.includes(data[0]))){
         alert("Process id must be unique");
         return;
     }
@@ -64,6 +65,7 @@ function addrow(){
     // }
     entries+=1;
     pid.push(data[0]);
+    extraarrayPID.push(data[0]);
 }
 //------------------------------------------------------------------
 function resettable(){
@@ -76,9 +78,12 @@ function resettable(){
     }
     document.getElementById("tablebuttons").style.transform="scaleY(0%)";
     table1.style.transform="scaleY(0%)";
+    document.getElementById("gc").style.transform="scaleY(0%)";
+    document.getElementById("average").style.transform="scaleY(0%)";
     pid=[];
     divarray=[];
     i=0;
+    extraarrayPID = [];
     completed=[];
     entries=0;
     time=0;
@@ -246,6 +251,7 @@ function filltable(){
     }
     // resettable();
     document.getElementById("tablebuttons").style.transform="scaleY(100%)";
+    document.getElementById("gc").style.transform="scaleY(100%)";
     table1.style.transform="scaleY(100%)";
     document.getElementById("average").style.transform="scaleY(100%)";
     let avgtext = "Average Waiting Time: "+parseFloat(avgwt).toFixed(2)+"\nAverage Turnaround Time: "+parseFloat(avgta).toFixed(2);;
